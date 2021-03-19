@@ -6,7 +6,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^(?P<pk>\d+)$', views.ContactInfoDetailView.as_view(), name='contact-detail'),
+    url(r'^(?P<pk>\d+)$', views.ContactDetailView.as_view(), name='contact-detail'),
+    url(r'^create/$', views.ContactCreate.as_view(), name='contact_create'),
+    url(r'^(?P<pk>\d+)/update/$', views.ContactUpdate.as_view(), name='contact_update'),
+    url(r'^(?P<pk>\d+)/delete/$', views.ContactDelete.as_view(), name='contact_delete'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL,
                               document_root=settings.MEDIA_ROOT)

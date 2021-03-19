@@ -4,15 +4,20 @@
 
 <h1>Contact information {{ contact }} </h1>
 <div style="margin-left:20px;margin-top:20px">
-{% for cont in contact.contactinfo_set.all %}
-{% if cont.image %}{% load static %} <img src="{{static}}{{cont.image }}" alt="{{ contact }}" width="200">{% endif %}
-{% if cont.city %}<h4>City</h4> {{ cont.city }}{% endif %}
-{% if cont.address %}<h4>Address</h4> {{ cont.address }}{% endif %}
-{% if cont.phone %}<h4>Phone</h4> {{ cont.phone }}{% endif %}
-{% if cont.contactUrl %}<h4>web page</h4> <a href = "{{ cont.contactUrl }}" >{{ cont.contactUrl }}</a>{% endif %}
+
+{% if contact.image %}{% load static %} <img src="{{static}}{{contact.image }}" alt="{{ contact }}" width="200">{% endif %}
+{% if contact.city %}<h4>City</h4> {{ contact.city }}{% endif %}
+{% if contact.address %}<h4>Address</h4> {{ contact.address }}{% endif %}
+{% if contact.phone %}<h4>Phone</h4> {{ contact.phone }}{% endif %}
+{% if contact.contactUrl %}<h4>web page</h4> <a href = "{{ contact.contactUrl }}" >{{ contact.contactUrl }}</a>{% endif %}
 
 <!-- итерации по каждой копии/экземпляру книги -->
-{% endfor %}
-
 </div>
+<br>
+<form action="{% url 'contact_update' contact.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Edit" />
+
+</form>
+
 {% endblock %}
