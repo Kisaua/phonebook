@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Contact information {{ contact }} </h1>
+<div style="margin-left:20px;margin-top:20px">
+{% for cont in contact.contactinfo_set.all %}
+{% if cont.image %}{% load static %} <img src="{{static}}{{cont.image }}" alt="{{ contact }}" width="200">{% endif %}
+{% if cont.city %}<h4>City</h4> {{ cont.city }}{% endif %}
+{% if cont.address %}<h4>Address</h4> {{ cont.address }}{% endif %}
+{% if cont.phone %}<h4>Phone</h4> {{ cont.phone }}{% endif %}
+{% if cont.contactUrl %}<h4>web page</h4> <a href = "{{ cont.contactUrl }}" >{{ cont.contactUrl }}</a>{% endif %}
+
+<!-- итерации по каждой копии/экземпляру книги -->
+{% endfor %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Contact list</h1>
+{% if contact_list %}
+<ul>
+{% for contact in contact_list %}
+   <li><strong><a href="{{ contact.get_absolute_url }}">{{contact}}</a></strong></strong></li>
+{% endfor %}
+</ul>
+{% else %}
+  <p>Книга пуста</p>
+{% endif %}
+{% endblock %}
