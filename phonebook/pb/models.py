@@ -10,7 +10,7 @@ def validate_url(contactUrl):
 
 def validate_phone(phone):
     if not re.match(r'^[0-9]{10}$', phone): 
-        raise ValidationError("Phone number must contain 9 numbers")
+        raise ValidationError("Phone number must contain 10 numbers")
     else:
         return phone
 
@@ -22,8 +22,8 @@ class Contact(models.Model):
 #    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
     city = models.CharField('City', max_length=50,  blank = True,  help_text='Enter City')
     address = models.CharField('Address', max_length=150, blank = True, help_text='Enter address')
-    phone = models.CharField('Phone', max_length=10, help_text='Phone number', validators=[validate_phone,])
-    contactUrl = models.CharField('URL', max_length=250, null = True, blank = True, help_text='Enter valid web adsress', validators=[validate_url,])
+    phone = models.CharField('Phone', max_length=10, help_text='Phone number 10 numbers', validators=[validate_phone,])
+    contactUrl = models.CharField('URL', max_length=250, null = True, blank = True, help_text='Enter web adsress', validators=[validate_url,])
     image = models.ImageField(upload_to='pb/static/images', blank = True,)
 
     def __str__(self): 

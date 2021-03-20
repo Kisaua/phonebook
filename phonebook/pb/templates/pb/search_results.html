@@ -1,14 +1,33 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Search in contacts</h1>
+<h1>Search results</h1>
+<table id="myTable" class="table text-justify table-striped">
+            
+
 {% if object_list %}
-<ul>
+<thead class="tableh1">
+  <th class="col-1">First name</th>
+  <th class="col-1">Last name</th>
+  <th class="col-1">Phone</th>
+  <th class="col-1"></th>
+  </thead>
+  <tbody id="tableBody">
 {% for contact in object_list %}
-   <li><strong><a href="{{ contact.get_absolute_url }}">{{contact}}</a></strong></strong></li>
+<tr>
+  <td >{{contact.fname}}</td>
+  <td>{{contact.lname}}</td>
+  <td>{{contact.phone}}</td>
+  <td><a href="{{ contact.get_absolute_url }}" class="btn btn-info w-80 btn1">Details</a></td>
+</tr>  
 {% endfor %}
-</ul>
+
 {% else %}
-  <p>Ничего не найдено</p>
+<tr>
+  <td>Thre is no results of search</td>
+
+</tr> 
 {% endif %}
+</tbody>
+</table>
 {% endblock %}

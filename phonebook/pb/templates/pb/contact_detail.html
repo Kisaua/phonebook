@@ -1,27 +1,31 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-
-<h1>Contact information {{ contact }} </h1>
-<div style="margin-left:20px;margin-top:20px">
-
-{% if contact.image %}{% load static %} <img src="{{static}}{{contact.image }}" alt="{{ contact }}" width="200">{% endif %}
-{% if contact.city %}<h4>City</h4> {{ contact.city }}{% endif %}
-{% if contact.address %}<h4>Address</h4> {{ contact.address }}{% endif %}
-{% if contact.phone %}<h4>Phone</h4> {{ contact.phone }}{% endif %}
-{% if contact.contactUrl %}<h4>web page</h4> <a href = "{{ contact.contactUrl }}" >{{ contact.contactUrl }}</a>{% endif %}
-
-<!-- итерации по каждой копии/экземпляру книги -->
-</div>
-<br>
-<a href="{% url 'contact_update' contact.id %}">Edit</a>
-
-<br>
-<br>
-<form action="{% url 'contact_delete' contact.id %}" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Delete" />
-
-</form>
-
+<table id="myTable" class="table text-justify table-striped">
+<tbody>
+    <thead class="tableh1">
+        <th class="col-1">Contact information</th>
+        <th class="col-1"></th>
+    </thead>
+    <tbody id="tableBody"></tbody>
+    {% if contact.image %}{% load static %}
+    <tr><td><img src="{{static}}{{contact.image }}" alt="{{ contact }}" width="200"></td></tr>
+    {% endif %}
+    <tr><td>First name</td><td>{{ contact.fname }}</td></tr>
+    <tr><td>Last name</td><td>{{ contact.lname }}</td></tr>
+    <tr><td>Phone</td><td>{{ contact.phone }}</td></tr>
+    {% if contact.city %}<tr><td>City</td><td>{{ contact.city }}</td></tr> {% endif %}
+    {% if contact.address %}<tr><td>Address</td><td>{{ contact.address }}</td></tr> {% endif %}
+    {% if contact.contactUrl%}<tr><td>Web page</td><td> 
+        <a href = "{{ contact.contactUrl }}" >{{ contact.contactUrl }}</a></td></tr> {% endif %}
+    <tr><td>
+        <a href="{% url 'contact_update' contact.id %}" class="btn btn-info w-100 btn1">Edit</a>   
+    </td><td>
+        <form action="{% url 'contact_delete' contact.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete" class="btn btn-info w-100 btn1" />
+        </form>
+    </td></tr>
+</tbody>
+</table>
 {% endblock %}
