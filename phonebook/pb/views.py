@@ -17,6 +17,7 @@ def index(request):
 class ContactDetailView(generic.DetailView):
     model = Contact
 
+
 class ContactCreate(CreateView):
     model = Contact
     fields = '__all__'

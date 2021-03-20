@@ -10,8 +10,8 @@ def validate_url(contactUrl):
 
 # Create your models here.
 class Contact(models.Model):
-    fname = models.CharField('fname', max_length=50, help_text='Enter Firts name')
-    lname = models.CharField('lname', max_length=50, help_text='Enter Last name')
+    fname = models.CharField('First name', max_length=50, help_text='Enter Firts name')
+    lname = models.CharField('Last name', max_length=50, help_text='Enter Last name')
 #    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
     city = models.CharField('City', max_length=50,  blank = True,  help_text='Enter City')
     address = models.CharField('Address', max_length=150, blank = True, help_text='Enter address')
