@@ -14,9 +14,13 @@
 <!-- итерации по каждой копии/экземпляру книги -->
 </div>
 <br>
-<form action="{% url 'contact_update' contact.id %}" method="post">
+<a href="{% url 'contact_update' contact.id %}">Edit</a>
+
+<br>
+<br>
+<form action="{% url 'contact_delete' contact.id %}" method="post">
     {% csrf_token %}
-    <input type="submit" value="Edit" />
+    <input type="submit" value="Delete" />
 
 </form>
 

@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^create/$', views.ContactCreate.as_view(), name='contact_create'),
     url(r'^(?P<pk>\d+)/update/$', views.ContactUpdate.as_view(), name='contact_update'),
     url(r'^(?P<pk>\d+)/delete/$', views.ContactDelete.as_view(), name='contact_delete'),
+    url(r'^search$', views.SearchResultsView.as_view(), name='search_results'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL,
                               document_root=settings.MEDIA_ROOT)

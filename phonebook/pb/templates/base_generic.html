@@ -21,7 +21,11 @@
       <ul class="sidebar-nav">
           <li><a href="{% url 'index' %}">Home</a></li>
           <li><a href="{% url 'contact_create' %}">Add contact</a></li>
+          
       </ul>
+      <form action="{% url 'search_results' %}" method="get">
+        <input name="q" type="text" placeholder="Search">
+      </form>
      {% endblock %}
       </div>
       <div class="col-sm-10 ">
