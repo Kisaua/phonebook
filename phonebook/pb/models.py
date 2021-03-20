@@ -2,11 +2,18 @@ from django.db import models
 from django.urls import reverse
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
+import re
 
 def validate_url(contactUrl):
     validate = URLValidator()
     validate(contactUrl)
-    
+
+def validate_phone(phone):
+    if not re.match(r'^[0-9]{10}$', phone): 
+        raise ValidationError("Phone number must contain 9 numbers")
+    else:
+        return phone
+
 
 # Create your models here.
 class Contact(models.Model):
@@ -15,7 +22,7 @@ class Contact(models.Model):
 #    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
     city = models.CharField('City', max_length=50,  blank = True,  help_text='Enter City')
     address = models.CharField('Address', max_length=150, blank = True, help_text='Enter address')
-    phone = models.CharField('Phone', max_length=9, help_text='Phone number')
+    phone = models.CharField('Phone', max_length=10, help_text='Phone number', validators=[validate_phone,])
     contactUrl = models.CharField('URL', max_length=250, null = True, blank = True, help_text='Enter valid web adsress', validators=[validate_url,])
     image = models.ImageField(upload_to='pb/static/images', blank = True,)
 
